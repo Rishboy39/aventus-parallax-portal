@@ -1,14 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Home, Users, Info, Award, Mail } from 'lucide-react';
+import { Home, Users, Info, Award, Mail, Image } from 'lucide-react';
 
 const navItems = [
   { icon: Home, label: 'Home', href: '/' },
   { icon: Users, label: 'Team', href: '/#team' },
   { icon: Info, label: 'About', href: '/#about' },
   { icon: Award, label: 'Sponsors', href: '/#sponsors' },
+  { icon: Image, label: 'Gallery', href: '/gallery' },
   { icon: Mail, label: 'Contact', href: '/contact' },
 ];
 
