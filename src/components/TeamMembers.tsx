@@ -3,52 +3,8 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import ParallaxSection from './ParallaxSection';
 import RevealText from './ui/RevealText';
-
-interface TeamMember {
-  name: string;
-  role: string;
-  image: string;
-  delay: number;
-}
-
-const teamMembers: TeamMember[] = [
-  {
-    name: 'Team Member 1',
-    role: 'Team Principal',
-    image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=500&auto=format&fit=crop',
-    delay: 100,
-  },
-  {
-    name: 'Team Member 2',
-    role: 'Manufacturing Engineer',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=500&auto=format&fit=crop',
-    delay: 200,
-  },
-  {
-    name: 'Team Member 3',
-    role: 'Design Engineer',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop',
-    delay: 300,
-  },
-  {
-    name: 'Team Member 4',
-    role: 'Resource Manager',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=500&auto=format&fit=crop',
-    delay: 400,
-  },
-  {
-    name: 'Team Member 5',
-    role: 'Graphic Designer',
-    image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=500&auto=format&fit=crop',
-    delay: 500,
-  },
-  {
-    name: 'Team Member 6',
-    role: 'Marketing Manager',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=500&auto=format&fit=crop',
-    delay: 600,
-  },
-];
+import { Link } from 'react-router-dom';
+import { teamMembers } from '@/data/teamData';
 
 export default function TeamMembers() {
   return (
@@ -79,8 +35,9 @@ export default function TeamMembers() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <RevealText key={index} delay={member.delay}>
-              <div 
-                className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:shadow-xl"
+              <Link 
+                to={`/team/${member.id}`}
+                className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:shadow-xl block"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-aventus-black via-transparent to-transparent opacity-70 z-10"></div>
                 
@@ -101,7 +58,7 @@ export default function TeamMembers() {
                 
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-aventus-red/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
-              </div>
+              </Link>
             </RevealText>
           ))}
         </div>

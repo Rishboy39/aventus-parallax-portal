@@ -8,7 +8,7 @@ import RevealText from './ui/RevealText';
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Video URL - replace with your actual video URL or add a placeholder
+  // Video URL - replace with your actual video URL
   const videoUrl = "https://assets.mixkit.co/videos/preview/mixkit-red-and-black-sports-car-racing-on-a-track-34553-large.mp4";
   
   const scrollToNextSection = () => {
@@ -17,6 +17,13 @@ export default function Hero() {
       teamSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  useEffect(() => {
+    // Preload video
+    const video = new Video();
+    video.src = videoUrl;
+    video.preload = 'auto';
+  }, []);
 
   return (
     <div 

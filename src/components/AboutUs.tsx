@@ -1,10 +1,48 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import ParallaxSection from './ParallaxSection';
 import RevealText from './ui/RevealText';
+import { 
+  Card, 
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
+import { Plus, Minus } from 'lucide-react';
+
+interface CardItem {
+  title: string;
+  description: string;
+}
+
+const cards: CardItem[] = [
+  {
+    title: "Who We Are",
+    description: "Our belief and group philosophy depends on cooperation, which permits singular ability to bloom and abilities to create to the greatest potential. Our team is built on values, such as cooperation, teamwork, hard work and love for the competition."
+  },
+  {
+    title: "Team Identity",
+    description: "Our shared goal is: 'Talent wins games, but teamwork and intelligence win championships.' Inspired by this quotation, our team presents a special spirit of teamwork and partnership, setting common goals and crossing together, as a whole, this path to its end."
+  },
+  {
+    title: "Team Goals",
+    description: "Goals are integral to team development and organization; in fact, we have determined the ones most important to our team. Our goals are to attract sponsors, to organize events, and to create a car that is as small in size as possible to reduce weight and maximize speed."
+  }
+];
 
 export default function AboutUs() {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
+  const toggleCard = (index: number) => {
+    if (activeCard === index) {
+      setActiveCard(null);
+    } else {
+      setActiveCard(index);
+    }
+  };
+
   return (
     <ParallaxSection 
       id="about"
@@ -49,21 +87,40 @@ export default function AboutUs() {
             </RevealText>
             
             <RevealText delay={600}>
-              <p className="text-gray-700 text-lg mb-8">
-                Our approach combines rigorous engineering principles with creative design thinking. We're not just building miniature race cars; we're developing the next generation of engineers, designers, and leaders in motorsport.
-              </p>
-            </RevealText>
-            
-            <RevealText delay={800}>
-              <div className="grid grid-cols-2 gap-4 md:gap-6">
-                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                  <h3 className="text-aventus-red font-bold text-2xl mb-1">Innovation</h3>
-                  <p className="text-gray-600">Pioneering new solutions through creative engineering</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                  <h3 className="text-aventus-red font-bold text-2xl mb-1">Performance</h3>
-                  <p className="text-gray-600">Optimizing every aspect for maximum speed and efficiency</p>
-                </div>
+              <div className="space-y-4 mt-6">
+                {cards.map((card, index) => (
+                  <Card 
+                    key={index} 
+                    className={cn(
+                      "overflow-hidden transition-all duration-300", 
+                      activeCard === index ? "border-aventus-red shadow-lg" : "border-gray-200"
+                    )}
+                  >
+                    <CardHeader className="p-4 cursor-pointer" onClick={() => toggleCard(index)}>
+                      <div className="flex justify-between items-center">
+                        <CardTitle className="text-aventus-red font-bold">{card.title}</CardTitle>
+                        <button 
+                          className={cn(
+                            "bg-gray-100 rounded-full p-1.5 transition-all",
+                            activeCard === index ? "bg-aventus-red text-white" : "text-gray-500"
+                          )}
+                        >
+                          {activeCard === index ? <Minus size={18} /> : <Plus size={18} />}
+                        </button>
+                      </div>
+                    </CardHeader>
+                    <div 
+                      className={cn(
+                        "transition-all duration-300 overflow-hidden",
+                        activeCard === index ? "max-h-96" : "max-h-0"
+                      )}
+                    >
+                      <CardContent className="p-4 pt-0">
+                        <p className="text-gray-700">{card.description}</p>
+                      </CardContent>
+                    </div>
+                  </Card>
+                ))}
               </div>
             </RevealText>
           </div>

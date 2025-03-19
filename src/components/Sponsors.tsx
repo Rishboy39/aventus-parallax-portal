@@ -4,6 +4,77 @@ import { cn } from '@/lib/utils';
 import ParallaxSection from './ParallaxSection';
 import RevealText from './ui/RevealText';
 
+interface SponsorType {
+  name: string;
+  logo: string;
+  tier: 'platinum' | 'gold' | 'silver' | 'bronze';
+}
+
+// Placeholder sponsors (can be replaced with real ones)
+const sponsors: SponsorType[] = [
+  {
+    name: 'TechCorp',
+    logo: 'https://placehold.co/200x100/333/white?text=TechCorp',
+    tier: 'platinum'
+  },
+  {
+    name: 'EnginePro',
+    logo: 'https://placehold.co/200x100/333/white?text=EnginePro',
+    tier: 'gold'
+  },
+  {
+    name: 'RaceSystems',
+    logo: 'https://placehold.co/200x100/333/white?text=RaceSystems',
+    tier: 'gold'
+  },
+  {
+    name: 'SpeedTech',
+    logo: 'https://placehold.co/200x100/333/white?text=SpeedTech',
+    tier: 'silver'
+  },
+];
+
+const tiers = [
+  {
+    name: 'Platinum',
+    benefits: [
+      'Logo prominence on car and team uniform',
+      'Featured on all marketing materials',
+      'Social media promotion',
+      'Team visits to sponsor location',
+      'Exclusive access to team events'
+    ],
+    color: 'bg-gradient-to-r from-gray-200 to-gray-400'
+  },
+  {
+    name: 'Gold',
+    benefits: [
+      'Logo on car and team uniform',
+      'Featured on marketing materials',
+      'Social media mentions',
+      'Team representation at sponsor events'
+    ],
+    color: 'bg-gradient-to-r from-yellow-300 to-yellow-500'
+  },
+  {
+    name: 'Silver',
+    benefits: [
+      'Logo on team uniform',
+      'Mention in marketing materials',
+      'Social media recognition'
+    ],
+    color: 'bg-gradient-to-r from-gray-300 to-gray-500'
+  },
+  {
+    name: 'Bronze',
+    benefits: [
+      'Logo on team website',
+      'Mentioned in team presentations'
+    ],
+    color: 'bg-gradient-to-r from-amber-700 to-amber-900'
+  }
+];
+
 export default function Sponsors() {
   return (
     <ParallaxSection 
@@ -32,8 +103,52 @@ export default function Sponsors() {
           </RevealText>
         </div>
         
-        {/* Placeholder for sponsors */}
-        <RevealText delay={600}>
+        {/* Current Sponsors */}
+        {sponsors.length > 0 && (
+          <RevealText delay={600}>
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold text-white mb-8 text-center">Current Partners</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {sponsors.map((sponsor, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-aventus-gray-light rounded-xl p-6 flex items-center justify-center border border-white/5 hover:border-aventus-red/30 transition-all duration-300"
+                  >
+                    <img src={sponsor.logo} alt={sponsor.name} className="max-w-full max-h-[80px]" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </RevealText>
+        )}
+        
+        {/* Sponsorship Tiers */}
+        <RevealText delay={800}>
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-white mb-8 text-center">Sponsorship Opportunities</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {tiers.map((tier, index) => (
+                <div key={index} className="bg-aventus-gray-light rounded-xl overflow-hidden border border-white/5 flex flex-col h-full">
+                  <div className={cn("h-3", tier.color)}></div>
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-white mb-4">{tier.name}</h4>
+                    <ul className="space-y-2 mb-6 flex-grow">
+                      {tier.benefits.map((benefit, i) => (
+                        <li key={i} className="text-white/70 text-sm flex items-start">
+                          <span className="inline-block mr-2 text-aventus-red">•</span>
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </RevealText>
+        
+        {/* Call to Action */}
+        <RevealText delay={1000}>
           <div className="bg-aventus-gray-light rounded-2xl p-12 text-center border border-white/5">
             <h3 className="text-2xl font-medium text-white mb-6">
               Become a Sponsor
