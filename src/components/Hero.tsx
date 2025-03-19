@@ -19,10 +19,10 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    // Preload video
-    const video = new Video();
-    video.src = videoUrl;
-    video.preload = 'auto';
+    // Preload video using proper DOM API
+    const videoElement = document.createElement('video');
+    videoElement.src = videoUrl;
+    videoElement.preload = 'auto';
   }, []);
 
   return (
