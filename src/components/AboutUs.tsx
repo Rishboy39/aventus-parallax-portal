@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 import ParallaxSection from './ParallaxSection';
@@ -9,12 +8,12 @@ export default function AboutUs() {
   return (
     <ParallaxSection 
       id="about"
-      className="py-24 bg-white"
-      speed={0.08}
+      className="py-16 md:py-24 bg-white"
+      speed={0.05}
     >
       <div className="container px-4 mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <RevealText>
             <p className="text-aventus-red font-medium uppercase tracking-wider mb-3">
               About Us
@@ -36,11 +35,11 @@ export default function AboutUs() {
         </div>
         
         {/* Main Content with Images and Text */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           {/* First Row */}
           <div className="lg:col-span-5 flex flex-col justify-center">
             <RevealText>
-              <div className="bg-gradient-to-br from-aventus-red/10 to-aventus-red/5 p-8 rounded-2xl">
+              <div className="bg-gradient-to-br from-aventus-red/10 to-aventus-red/5 p-6 md:p-8 rounded-2xl">
                 <h3 className="text-2xl font-bold text-aventus-red mb-4">Who We Are</h3>
                 <p className="text-gray-700">
                   Our belief and group philosophy depends on cooperation, which permits singular ability 
@@ -55,9 +54,9 @@ export default function AboutUs() {
             </RevealText>
           </div>
           
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 mb-8 lg:mb-0">
             <RevealText delay={300}>
-              <div className="overflow-hidden rounded-2xl shadow-xl">
+              <div className="overflow-hidden rounded-2xl shadow-xl h-full">
                 <AspectRatio ratio={16/9}>
                   <img 
                     src="https://images.unsplash.com/photo-1635428433739-53ac707f3d2c?q=80&w=2000&auto=format&fit=crop" 
@@ -69,10 +68,10 @@ export default function AboutUs() {
             </RevealText>
           </div>
           
-          {/* Second Row (Reversed on Desktop) */}
-          <div className="lg:col-span-7 order-2 lg:order-1">
+          {/* Second Row */}
+          <div className="lg:col-span-7 order-2 lg:order-1 mb-8 lg:mb-0">
             <RevealText delay={500}>
-              <div className="grid grid-cols-2 gap-6 h-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 h-full">
                 <div className="overflow-hidden rounded-2xl shadow-xl">
                   <AspectRatio ratio={3/4}>
                     <img 

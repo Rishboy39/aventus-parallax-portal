@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 import ParallaxSection from './ParallaxSection';
@@ -10,11 +9,11 @@ export default function TeamMembers() {
   return (
     <ParallaxSection 
       id="team"
-      className="py-24 bg-gradient-to-b from-aventus-black to-aventus-gray"
+      className="py-16 md:py-24 bg-gradient-to-b from-aventus-black to-aventus-gray"
       speed={0.05}
     >
       <div className="container px-4 mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <RevealText>
             <p className="text-aventus-red font-medium uppercase tracking-wider mb-3">
               Meet The Team
@@ -32,12 +31,12 @@ export default function TeamMembers() {
           </RevealText>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {teamMembers.map((member, index) => (
             <RevealText key={index} delay={member.delay}>
               <Link 
                 to={`/team/${member.id}`}
-                className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:shadow-xl block"
+                className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:shadow-xl block bg-aventus-gray-light"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-aventus-black via-transparent to-transparent opacity-70 z-10"></div>
                 

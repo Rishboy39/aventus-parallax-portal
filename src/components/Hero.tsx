@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { handleSpotlightMouseMove } from '@/lib/animations';
@@ -28,7 +27,7 @@ export default function Hero() {
   return (
     <div 
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden"
+      className="relative min-h-screen w-full overflow-hidden"
       onMouseMove={handleSpotlightMouseMove}
     >
       {/* Video Background */}
@@ -49,7 +48,7 @@ export default function Hero() {
       <div className="spotlight"></div>
       
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center text-white">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center text-white">
         <RevealText delay={300}>
           <p className="text-xl font-medium mb-4 text-aventus-red uppercase tracking-wider">
             F1 in Schools

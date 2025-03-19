@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 import ParallaxSection from './ParallaxSection';
@@ -106,15 +105,19 @@ export default function Sponsors() {
         {/* Current Sponsors */}
         {sponsors.length > 0 && (
           <RevealText delay={600}>
-            <div className="mb-16">
-              <h3 className="text-2xl font-bold text-white mb-8 text-center">Current Partners</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="mb-12 md:mb-16">
+              <h3 className="text-2xl font-bold text-white mb-6 md:mb-8 text-center">Current Partners</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                 {sponsors.map((sponsor, index) => (
                   <div 
                     key={index} 
-                    className="bg-aventus-gray-light rounded-xl p-6 flex items-center justify-center border border-white/5 hover:border-aventus-red/30 transition-all duration-300"
+                    className="bg-aventus-gray-light rounded-xl p-4 md:p-6 flex items-center justify-center border border-white/5 hover:border-aventus-red/30 transition-all duration-300 hover:shadow-lg"
                   >
-                    <img src={sponsor.logo} alt={sponsor.name} className="max-w-full max-h-[80px]" />
+                    <img 
+                      src={sponsor.logo} 
+                      alt={sponsor.name} 
+                      className="max-w-full max-h-[60px] md:max-h-[80px] object-contain" 
+                    />
                   </div>
                 ))}
               </div>
@@ -124,15 +127,15 @@ export default function Sponsors() {
         
         {/* Sponsorship Tiers */}
         <RevealText delay={800}>
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">Sponsorship Opportunities</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="mb-12 md:mb-16">
+            <h3 className="text-2xl font-bold text-white mb-6 md:mb-8 text-center">Sponsorship Opportunities</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {tiers.map((tier, index) => (
-                <div key={index} className="bg-aventus-gray-light rounded-xl overflow-hidden border border-white/5 flex flex-col h-full">
-                  <div className={cn("h-3", tier.color)}></div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold text-white mb-4">{tier.name}</h4>
-                    <ul className="space-y-2 mb-6 flex-grow">
+                <div key={index} className="bg-aventus-gray-light rounded-xl overflow-hidden border border-white/5 flex flex-col h-full hover:border-aventus-red/30 transition-all duration-300">
+                  <div className={cn("h-2 md:h-3", tier.color)}></div>
+                  <div className="p-4 md:p-6">
+                    <h4 className="text-lg md:text-xl font-bold text-white mb-4">{tier.name}</h4>
+                    <ul className="space-y-2 mb-4 md:mb-6 flex-grow">
                       {tier.benefits.map((benefit, i) => (
                         <li key={i} className="text-white/70 text-sm flex items-start">
                           <span className="inline-block mr-2 text-aventus-red">•</span>
@@ -149,7 +152,7 @@ export default function Sponsors() {
         
         {/* Call to Action */}
         <RevealText delay={1000}>
-          <div className="bg-aventus-gray-light rounded-2xl p-12 text-center border border-white/5">
+          <div className="bg-aventus-gray-light rounded-2xl p-6 md:p-12 text-center border border-white/5 hover:border-aventus-red/30 transition-all duration-300">
             <h3 className="text-2xl font-medium text-white mb-6">
               Become a Sponsor
             </h3>

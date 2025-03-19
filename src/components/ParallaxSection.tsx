@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -29,54 +28,37 @@ export function ParallaxSection({
     
     if (!section || !content) return;
     
-    let startScrollPosition = 0;
-    let ticking = false;
-    
     const handleParallax = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (!section || !content) return;
-          
-          const rect = section.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-          
-          // Check if section is in view
-          if (rect.top < windowHeight && rect.bottom > 0) {
-            const scrollPosition = window.scrollY - startScrollPosition;
-            const translateValue = direction === 'up' 
-              ? scrollPosition * speed * (reverse ? -1 : 1)
-              : scrollPosition * speed * (reverse ? 1 : -1);
-              
-            content.style.transform = `translate3d(0, ${translateValue}px, 0)`;
-          }
-          
-          ticking = false;
-        });
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      
+      // Check if section is in view
+      if (sectionTop < windowHeight && sectionTop > -sectionHeight) {
+        const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+        const translateY = (scrollProgress - 0.5) * speed * 100;
         
-        ticking = true;
+        content.style.transform = `translate3d(0, ${translateY}px, 0)`;
       }
     };
     
-    // Store initial position
-    startScrollPosition = window.scrollY;
-    
     window.addEventListener('scroll', handleParallax, { passive: true });
+    handleParallax(); // Initial position
     
-    return () => {
-      window.removeEventListener('scroll', handleParallax);
-    };
+    return () => window.removeEventListener('scroll', handleParallax);
   }, [speed, direction, reverse]);
   
   return (
     <div 
       ref={sectionRef} 
-      className={cn("parallax-wrapper relative overflow-hidden w-full", className)}
+      className={cn("relative overflow-hidden w-full", className)}
       id={id}
       {...props}
     >
       <div 
         ref={contentRef} 
-        className="will-change-transform"
+        className="will-change-transform transition-transform duration-100"
       >
         {children}
       </div>
