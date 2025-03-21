@@ -59,7 +59,7 @@ export default function AboutUs() {
               <div className="overflow-hidden rounded-2xl shadow-xl h-full">
                 <AspectRatio ratio={16/9}>
                   <img 
-                    src="https://images.unsplash.com/photo-1635428433739-53ac707f3d2c?q=80&w=2000&auto=format&fit=crop" 
+                    src="/img/car_work.png" 
                     alt="Team working on F1 car" 
                     className="w-full h-full object-cover"
                   />
@@ -75,7 +75,7 @@ export default function AboutUs() {
                 <div className="overflow-hidden rounded-2xl shadow-xl">
                   <AspectRatio ratio={3/4}>
                     <img 
-                      src="https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1000&auto=format&fit=crop" 
+                      src="/img/team_goals.png" 
                       alt="F1 Car Design" 
                       className="w-full h-full object-cover"
                     />
@@ -84,7 +84,7 @@ export default function AboutUs() {
                 <div className="overflow-hidden rounded-2xl shadow-xl">
                   <AspectRatio ratio={3/4}>
                     <img 
-                      src="https://images.unsplash.com/photo-1504051771394-dd2e66b2e08f?q=80&w=1000&auto=format&fit=crop" 
+                      src="/img/shirt.png" 
                       alt="Racing Competition" 
                       className="w-full h-full object-cover"
                     />
@@ -119,7 +119,7 @@ export default function AboutUs() {
                   <div className="overflow-hidden rounded-2xl shadow-xl">
                     <AspectRatio ratio={4/3}>
                       <img 
-                        src="https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?q=80&w=1000&auto=format&fit=crop" 
+                        src="/img/team_gol.png" 
                         alt="Team Goals" 
                         className="w-full h-full object-cover"
                       />
