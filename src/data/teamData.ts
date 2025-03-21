@@ -15,7 +15,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Project Manager',
     image: '/img/bhrugu.png',
     delay: 100,
-    longDescription: 'Alex was elected team principal due to their immense passion for the competition and exclusive choice of the members for the formation of our team. Their role is to ensure the smooth operation and flow of the team throughout the competition. Therefore, they are responsible for the assignment of tasks of the whole team, maintaining constant contact with each member to inform everyone about the situation and progress of each part of the teamwork and to ensure that all deadlines are met.'
+    longDescription: 'A junior at STEM High School who combines creative and technical passions through photography and automotive design. Experienced in 3D modeling with Fusion 360, creating everything from mechanical parts to artistic concepts. '
   },
   {
     id: 1,
@@ -23,7 +23,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Manufacturing Engineer',
     image: '/img/arnav.png',
     delay: 200,
-    longDescription: 'Emma leads our manufacturing division, bringing years of experience in precision engineering. She oversees the production of our car components, ensuring each part meets our exacting standards. Her innovative approach to manufacturing has helped us reduce weight while maintaining structural integrity, giving our car a competitive edge on the track.'
+    longDescription: 'A junior at STEM High School with a strong engineering mindset. Active member of the Rocketry Club and passionate about hands-on building and design. From rockets to personal projects, I thrive on turning ideas into reality.'
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Marketing Officer',
     image: '/img/rishabh.png',
     delay: 300,
-    longDescription: 'Michael is the creative mind behind our car\'s aerodynamic design. Working closely with the manufacturing team, he examines various phenomena of aerodynamics and force effect throughout our course in the competition. His designs have significantly contributed to the efficient performance, maximum speed, and overall excellence of our team\'s car.'
+    longDescription: 'A junior at STEM High School pursuing engineering courses, with a passion for coding and design. Experienced in front-end development and UI/UX design. My free time is dedicated to exploring my enthusiasm for high-performance cars.'
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Testing Lead',
     image: '/img/ishir.png',
     delay: 400,
-    longDescription: 'Sophia manages our team\'s resources with precision and foresight. She ensures that we have the materials, tools, and services needed to build and race our car. Her strategic planning has been crucial to our ability to meet deadlines and operate within our budget constraints. She also coordinates with sponsors to secure additional resources and support.'
+    longDescription: 'A sophomore at STEM High School with aspirations in aerospace engineering. I\'m passionate about expanding my knowledge in mathematics and physics, dedicating my free time to exploring these fundamental concepts.'
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Graphics Lead',
     image: '/img/demain.png',
     delay: 500,
-    longDescription: 'Daniel leads our marketing and communication efforts, crafting our team\'s narrative and managing our social media presence. He works tirelessly to increase our visibility in the F1 in Schools community and attract sponsors. His creative campaigns have successfully highlighted our team\'s unique approach and values to a wider audience.'
+    longDescription: 'A sophomore at STEM High School with aspirations in engineering. I\'m passionate about automotive design and photography, often found perfecting racing lines in Gran Turismo. I combine my technical interests with creative pursuits to develop a well-rounded engineering mindset.'
   },
   {
     id: 5,
@@ -55,6 +55,6 @@ export const teamMembers: TeamMember[] = [
     role: 'Manufacturing Lead',
     image: '/img/pragyan.png',
     delay: 600,
-    longDescription: 'Olivia is our technology expert, handling everything from simulation software to data analysis. She develops custom software solutions that help us test and refine our designs virtually before physical production. Her skills in performance analysis have been invaluable in identifying areas for improvement and optimizing our car\'s performance.'
+    longDescription: 'A sophomore at STEM High School who combines technical and artistic pursuits. I spend my time coding for enjoyment, practicing piano, diving into books, and racing in Forza. These diverse interests fuel my creative approach to problem-solving.'
   },
 ];
