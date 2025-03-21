@@ -7,9 +7,9 @@ import RevealText from './ui/RevealText';
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Video URL - replace with your actual video URL
-  const videoUrl = "https://assets.mixkit.co/videos/preview/mixkit-red-and-black-sports-car-racing-on-a-track-34553-large.mp4";
-  
+  // Image URL - replace with your actual image URL
+  const imageUrl = '/hero.png'; // Update this with your image path
+
   const scrollToNextSection = () => {
     const teamSection = document.getElementById('team');
     if (teamSection) {
@@ -17,30 +17,19 @@ export default function Hero() {
     }
   };
 
-  useEffect(() => {
-    // Preload video using proper DOM API
-    const videoElement = document.createElement('video');
-    videoElement.src = videoUrl;
-    videoElement.preload = 'auto';
-  }, []);
-
   return (
     <div 
       ref={containerRef}
       className="relative min-h-screen w-full overflow-hidden"
       onMouseMove={handleSpotlightMouseMove}
     >
-      {/* Video Background */}
+      {/* Image Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        <img
+          src={imageUrl}
+          alt="Aventus Racing background"
           className="absolute inset-0 object-cover w-full h-full"
-        >
-          <source src={videoUrl} type="video/mp4" />
-        </video>
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-aventus-black/40 via-aventus-black/70 to-aventus-black/90"></div>
       </div>
       

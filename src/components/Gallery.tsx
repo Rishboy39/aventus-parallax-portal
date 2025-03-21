@@ -1,27 +1,34 @@
-import React from 'react';
+"use client";
+
+import React, { useRef, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Environment } from '@react-three/drei';
 import ParallaxSection from './ParallaxSection';
 import RevealText from './ui/RevealText';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import ThreeDViewer from './3DViewer';
 
-// Define the type for gallery items
+// Updated interface to include 3D model
 interface GalleryItem {
   title: string;
   description: string;
   image: string;
-  modelViewer?: string; // URL for 3D model viewer if implemented
+  modelUrl?: string;
   category: 'car' | 'parts' | 'concept';
 }
 
-// Sample gallery items (replace with your actual 3D renders)
+// Updated sample items with 3D models
 const galleryItems: GalleryItem[] = [
   {
     title: "2024 Race Car Design",
     description: "Our latest F1 in Schools car design featuring improved aerodynamics",
     image: "https://images.unsplash.com/photo-1635428433739-53ac707f3d2c?q=80&w=2000&auto=format&fit=crop",
+    modelUrl: "/path-to-your-3d-model.glb", // Add your 3D model path here
     category: 'car'
   },
-  // Add more items here
+  // Add more items...
 ];
 
 const categories = [
@@ -40,33 +47,58 @@ export default function Gallery() {
   );
 
   return (
-    <ParallaxSection
-      id="gallery"
-      className="py-24 bg-aventus-gray"
-      speed={0.05}
-    >
-      <div className="container px-4 mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <RevealText>
-            <p className="text-aventus-red font-medium uppercase tracking-wider mb-3">
-              Our Designs
-            </p>
-          </RevealText>
-          
-          <RevealText delay={200}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              3D <span className="text-gradient-red">Gallery</span>
-            </h2>
-          </RevealText>
-          
-          <RevealText delay={400} className="max-w-2xl mx-auto">
-            <p className="text-white/70 text-lg">
-              Explore our collection of 3D renders and designs
-            </p>
-          </RevealText>
-        </div>
+    <>
+      <section className="bg-aventus-black text-white">
+        <div className="min-h-[90vh] lg:max-h-[750px] w-screen lg:p-32 py-12 lg:gap-32 flex max-lg:flex-col items-center justify-center relative">
+          <motion.div
+            className='lg:w-1/2 max-lg:px-16'
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.h1
+              className="text-4xl leading-none font-bold mb-4 max-lg:pt-32"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              3D Gallery
+            </motion.h1>
+            <motion.p
+              className="text-lg lg:mr-32 text-white/70"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              Explore our collection of 3D renders and designs. Click and drag to interact with the models.
+            </motion.p>
+          </motion.div>
 
+          {/* Featured 3D Model Section */}
+          <motion.div
+            className='lg:w-1/2 w-full max-lg:px-8 relative h-full aspect-square'
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center'>
+              <Canvas camera={{ position: [-0.7, 0.25, 0.7], fov: 30 }}>
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[0, 5, 5]} intensity={1} />
+                <OrbitControls enableZoom={false} enablePan={false} enableDamping={true} />
+                <Environment preset="city" />
+              </Canvas>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Gallery Grid Section */}
+      <ParallaxSection
+        id="gallery"
+        className="py-24 bg-aventus-gray"
+        speed={0.05}
+      >
         {/* Category Filter */}
         <RevealText delay={500}>
           <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -87,10 +119,15 @@ export default function Gallery() {
           </div>
         </RevealText>
 
-        {/* Gallery Grid */}
+        {/* Updated Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map((item, index) => (
-            <RevealText key={index} delay={600 + (index * 100)}>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
               <div 
                 className="group cursor-pointer bg-aventus-gray-light rounded-2xl overflow-hidden"
                 onClick={() => setSelectedItem(item)}
@@ -110,28 +147,39 @@ export default function Gallery() {
                   <p className="text-white/70">{item.description}</p>
                 </div>
               </div>
-            </RevealText>
+            </motion.div>
           ))}
         </div>
 
-        {/* Modal for detailed view */}
+        {/* Updated Modal with 3D Viewer */}
         {selectedItem && (
-          <div 
+          <motion.div 
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onClick={() => setSelectedItem(null)}
           >
             <div 
               className="max-w-4xl w-full bg-aventus-gray-light rounded-2xl overflow-hidden"
               onClick={e => e.stopPropagation()}
             >
-              <div className="relative">
-                <AspectRatio ratio={16/9}>
-                  <img 
-                    src={selectedItem.image} 
+              <div className="relative h-[60vh]">
+                {selectedItem.modelUrl ? (
+                  <ThreeDViewer
+                    modelUrl={selectedItem.modelUrl}
+                    posterUrl={selectedItem.image}
                     alt={selectedItem.title}
-                    className="w-full h-full object-cover"
                   />
-                </AspectRatio>
+                ) : (
+                  <AspectRatio ratio={16/9}>
+                    <img 
+                      src={selectedItem.image} 
+                      alt={selectedItem.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </AspectRatio>
+                )}
                 <button
                   onClick={() => setSelectedItem(null)}
                   className="absolute top-4 right-4 text-white/70 hover:text-white bg-black/50 rounded-full p-2"
@@ -144,9 +192,9 @@ export default function Gallery() {
                 <p className="text-white/70">{selectedItem.description}</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
-      </div>
-    </ParallaxSection>
+      </ParallaxSection>
+    </>
   );
 } 

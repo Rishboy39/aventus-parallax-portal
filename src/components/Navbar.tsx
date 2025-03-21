@@ -81,8 +81,7 @@ export default function Navbar() {
       )}>
         {navItems.map(({ icon: Icon, label, href }) => {
           const isActive = activeSection === (label.toLowerCase() === 'home' ? 'home' : label.toLowerCase());
-          const isContactPage = href === '/contact';
-          const linkHref = isContactPage ? href : href.includes('#') ? href : `/#${label.toLowerCase()}`;
+          const linkHref = href.startsWith('/#') ? href : href;
           
           return (
             <Link
@@ -95,6 +94,13 @@ export default function Navbar() {
                   ? "bg-aventus-red text-white shadow-md" 
                   : "text-white/70 hover:text-white hover:bg-white/10"
               )}
+              onClick={(e) => {
+                if (href.includes('#')) {
+                  e.preventDefault();
+                  const element = document.getElementById(label.toLowerCase());
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               <Icon className="w-5 h-5" />
               <span className={cn(
