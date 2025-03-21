@@ -1,10 +1,11 @@
-
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import RevealText from './ui/RevealText';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
 
 export default function ContactForm() {
+  const formRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,26 +22,43 @@ export default function ContactForm() {
       [name]: value,
     }));
   };
-  ///Vercel
-  const handleSubmit = (e: React.FormEvent) => {
+  
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      toast.success('Message sent successfully!', {
-        description: 'We will get back to you soon.',
-      });
+    try {
+      // Using EmailJS to send the form
+      const result = await emailjs.sendForm(
+        'service_tq4kunr', // replace with your service ID
+        'template_slp158t', // replace with your template ID
+        formRef.current!,
+        'XDfYyJ3clf-7TQd8q' // replace with your public key
+      );
       
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
+      if (result.text === 'OK') {
+        toast.success('Message sent successfully!', {
+          description: 'We will get back to you soon.',
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      toast.error('Failed to send message', {
+        description: 'Please try again later.',
       });
-      
+      console.error('EmailJS Error:', error);
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
   
   return (
@@ -68,7 +86,7 @@ export default function ContactForm() {
           </div>
           
           <RevealText delay={600}>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
