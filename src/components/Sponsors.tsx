@@ -9,28 +9,23 @@ interface SponsorType {
   tier: 'platinum' | 'gold' | 'silver' | 'bronze';
 }
 
-// Placeholder sponsors (can be replaced with real ones)
 const sponsors: SponsorType[] = [
   {
-    name: 'TechCorp',
-    logo: 'https://placehold.co/200x100/333/white?text=TechCorp',
+    name: 'Teracube',
+    logo: 'https://placehold.co/200x100/333/white?text=TeraCube',
     tier: 'platinum'
   },
   {
-    name: 'EnginePro',
-    logo: 'https://placehold.co/200x100/333/white?text=EnginePro',
+    name: 'Oasiss',
+    logo: 'https://placehold.co/200x100/333/white?text=Oasis',
     tier: 'gold'
   },
   {
-    name: 'RaceSystems',
-    logo: 'https://placehold.co/200x100/333/white?text=RaceSystems',
+    name: 'Blue Rigger',
+    logo: 'https://placehold.co/200x100/333/white?text=BlueRigger',
     tier: 'gold'
   },
-  {
-    name: 'SpeedTech',
-    logo: 'https://placehold.co/200x100/333/white?text=SpeedTech',
-    tier: 'silver'
-  },
+
 ];
 
 const tiers = [
@@ -58,8 +53,8 @@ const tiers = [
   {
     name: 'Silver',
     benefits: [
-      'Logo on team uniform',
-      'Mention in marketing materials',
+      'Logo on Pit Display',
+      'Logo on Uniform',
       'Social media recognition'
     ],
     color: 'bg-gradient-to-r from-gray-300 to-gray-500'
@@ -67,7 +62,7 @@ const tiers = [
   {
     name: 'Bronze',
     benefits: [
-      'Logo on team website',
+      'Logo on Pit Display',
       'Mentioned in team presentations'
     ],
     color: 'bg-gradient-to-r from-amber-700 to-amber-900'

@@ -72,12 +72,21 @@ export default function Navbar() {
 
   return (
     <nav className={cn(
-      "fixed left-8 top-1/2 -translate-y-1/2 z-50 transition-all duration-500",
+      "fixed z-50 transition-all duration-500",
+      // Desktop: left side positioning, Mobile: bottom
+      "left-0 right-0 bottom-0 md:bottom-auto",
+      "md:left-8 md:right-auto md:top-1/2 md:-translate-y-1/2",
       scrolled ? "translate-x-0" : "translate-x-0"
     )}>
       <div className={cn(
-        "flex flex-col items-center gap-6 py-4 px-2 rounded-full transition-all duration-300",
-        scrolled ? "glass-dark shadow-lg" : "bg-transparent"
+        "flex transition-all duration-300",
+        // Adjust layout and sizing
+        "flex-row md:flex-col items-center justify-around md:justify-start",
+        "w-full md:w-auto py-2 md:py-4 px-2",
+        "gap-1 md:gap-4 md:rounded-full",
+        scrolled 
+          ? "glass-dark shadow-lg" 
+          : "bg-black/80 md:bg-transparent"
       )}>
         {navItems.map(({ icon: Icon, label, href }) => {
           const isActive = activeSection === (label.toLowerCase() === 'home' ? 'home' : label.toLowerCase());
@@ -89,7 +98,9 @@ export default function Navbar() {
               to={linkHref}
               aria-label={label}
               className={cn(
-                "relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300",
+                "relative flex items-center justify-center transition-all duration-300",
+                // Adjust icon sizes
+                "w-10 h-10 md:w-8 md:h-8 rounded-full",
                 isActive 
                   ? "bg-aventus-red text-white shadow-md" 
                   : "text-white/70 hover:text-white hover:bg-white/10"
@@ -102,11 +113,13 @@ export default function Navbar() {
                 }
               }}
             >
-              <Icon className="w-5 h-5" />
+              <Icon className="w-5 h-5 md:w-4 md:h-4" />
               <span className={cn(
-                "absolute left-full ml-2 whitespace-nowrap px-2 py-1 rounded-md text-sm transition-all duration-300",
-                "opacity-0 pointer-events-none translate-x-2 bg-aventus-black text-white",
-                "group-hover:opacity-100 group-hover:translate-x-0"
+                "absolute whitespace-nowrap px-2 py-1 rounded-md text-xs transition-all duration-300",
+                // Adjust tooltip position
+                "md:left-full md:ml-2 bottom-full mb-2 md:mb-0 md:bottom-auto",
+                "opacity-0 pointer-events-none translate-y-2 md:translate-y-0 md:translate-x-2 bg-aventus-black text-white",
+                "group-hover:opacity-100 group-hover:translate-y-0 md:group-hover:translate-x-0"
               )}>
                 {label}
               </span>
