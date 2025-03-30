@@ -27,7 +27,7 @@ const sponsors: SponsorType[] = [
   },
   {
     name: 'Elevate',
-    logo: 'https://placehold.co/200x100/333/white?text=BlueRigger',
+    logo: 'https://placehold.co/200x100/333/white?text=Elevate',
     tier: 'gold'
   },
 
